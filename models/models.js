@@ -17,12 +17,34 @@ const Shop = sequelize.define('shop', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     title: {type: DataTypes.STRING},
     description: {type: DataTypes.STRING},
-    image: {type: DataTypes.BLOB}
+    // image: {type: DataTypes.BLOB}
 })
 
 const Vacancies = sequelize.define('vacancies', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     title: {type: DataTypes.INTEGER},
     description: {type: DataTypes.STRING},
-    image: {type: DataTypes.BLOB}
+    // image: {type: DataTypes.BLOB}
 })
+
+const Blog = sequelize.define('blog', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    title: {type: DataTypes.STRING},
+    description: {type: DataTypes.STRING}
+})
+
+const UserSchedule = sequelize.define('user_schedule', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+})
+
+User.belongsToMany(Schedule, {through: UserSchedule})
+Schedule.belongsToMany(User, {through: UserSchedule})
+
+module.exports = {
+    User,
+    Schedule,
+    Shop,
+    Vacancies,
+    UserSchedule,
+    Blog
+}
